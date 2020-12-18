@@ -1,0 +1,37 @@
+<div id="short-container">
+  <div id="shortify">
+    <div class="form-field">
+      <form id="url-Input" (ngSubmit)="onSubmit()">
+        <input
+          aria-labelledby="url-Input"
+          placeholder="Shorten a link here..."
+          [(ngModel)]="url"
+          name="url"
+          type="text"
+        />
+        <button aria-label="Shorten Button">Shorten It!</button>
+      </form>
+      <mat-error [hidden]="!err"><em> Please add a link </em></mat-error>
+      <mat-error *ngIf="errMessage">
+        <p>
+          <em>{{ errMessage }}</em>
+        </p>
+      </mat-error>
+    </div>
+  </div>
+
+  <div class="result" *ngFor="let result of Links">
+    <p>{{ result.original_link }}</p>
+    <div class="new-link">
+      <p>{{ result.full_short_link }}</p>
+      <button
+        [ngStyle]="{ 'background-color': isCopied }"
+        [cdkCopyToClipboard]="result.full_short_link"
+        (click)="onClick()"
+      >
+        {{ copyState }}
+      </button>
+    </div>
+  </div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+</div>

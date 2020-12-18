@@ -1,0 +1,120 @@
+#info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  //   width: 100%;
+  padding: var(--very-large) var(--very-large);
+
+  h1 {
+    margin: var(--mid);
+  }
+
+  p {
+    color: var(--Grayish-Violet);
+    font-size: 0.8em;
+  }
+
+  .desc {
+    width: 35%;
+    text-align: center;
+  }
+}
+
+.boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: var(--large);
+  margin-bottom: var(--very-large);
+  position: relative;
+
+  .box {
+    width: calc(var(--humongous) / 2);
+    height: calc(var(--humongous) / 2.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: var(--mid);
+    margin: var(--mid);
+    text-align: left;
+    border-radius: calc(var(--subtle-radius) / 2);
+
+    h3 {
+      margin-bottom: var(--small);
+    }
+  }
+
+  .icon {
+    width: calc(var(--larger) + 15px);
+    height: calc(var(--larger) + 15px);
+    background-color: hsl(258, 40%, 30%);
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    position: absolute;
+  }
+
+  .box1 {
+    .icon {
+      background-image: url(../../../assets/images/icon-brand-recognition.svg);
+      bottom: 82%;
+    }
+  }
+
+  .box2 {
+    transform: translateY(var(--larger));
+    .icon {
+      background-image: url(../../../assets/images/icon-detailed-records.svg);
+      bottom: 88%;
+    }
+  }
+
+  .box3 {
+    transform: translateY(calc(var(--larger) * 2));
+    .icon {
+      background-image: url(../../../assets/images/icon-fully-customizable.svg);
+      bottom: 88%;
+    }
+  }
+
+  .stroke {
+    width: var(--humongous);
+    height: var(--small);
+    background: var(--Cyan);
+    position: absolute;
+    right: 25%;
+    top: 57%;
+    z-index: -2;
+  }
+}
+
+.banner {
+  margin-top: var(--large);
+  height: calc(var(--very-large) * 1.7);
+  width: 100%;
+  background-color: var(--Dark-Violet);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background-image: url(../../../assets/images/bg-boost-desktop.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  h2 {
+    transform: translateY(30%);
+  }
+
+  button {
+    padding: var(--small) var(--large);
+    border-radius: var(--curve-radius);
+    font-size: 1.1em;
+    font-weight: 700;
+    transform: translateY(-30%);
+  }
+}
