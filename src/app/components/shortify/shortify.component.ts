@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 import { ShortenAPIService } from '../../services/shorten-api.service';
 import { shortcode } from 'src/shared/shortcode';
 // import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
@@ -8,6 +14,13 @@ import { shortcode } from 'src/shared/shortcode';
   selector: 'app-shortify',
   templateUrl: './shortify.component.html',
   styleUrls: ['./shortify.component.scss'],
+  animations: [
+    trigger('fade', [
+      state('void', style({ opacity: 0, transform: 'translateY(20px)' })),
+      transition('void => *', [animate('1000ms ease-in')]),
+      transition('* => void', [animate('600ms ease-out')]),
+    ]),
+  ],
 })
 export class ShortifyComponent implements OnInit {
   url: string = '';
@@ -18,24 +31,24 @@ export class ShortifyComponent implements OnInit {
   errMessage: string;
   showSpinner: boolean = false;
   isCopied: string = '';
-  copyState: string = 'Copy';
-  isErr: boolean = false;
-  StoredLinks = [];
+  inputErr: string = '';
 
   constructor(private shortenApiService: ShortenAPIService) {}
 
   ngOnInit(): void {
-    localStorage.setItem('storedLinks', JSON.stringify(this.Links));
-
-    this.StoredLinks = JSON.parse(localStorage.getItem('storedLinks'));
-    console.log(this.Links);
+    this.Links = JSON.parse(localStorage.getItem('storedLinks'));
   }
 
+  // Function to process url shortening request
   onSubmit() {
+    // if inputs value is null show red warning
     if (this.url === '') {
       this.err = true;
+      this.inputErr = 'hsl(0, 87%, 67%)';
+
       setTimeout(() => {
         this.err = false;
+        this.inputErr = '';
       }, 3000);
     } else {
       this.showSpinner = true;
@@ -43,13 +56,29 @@ export class ShortifyComponent implements OnInit {
       this.urlLink = this.url;
       this.shortenApiService.getLink(this.urlLink).subscribe(
         (res) => {
-          this.Links.push(res.result);
           this.showSpinner = false;
-          // localStorage.setItem('storedLinks', JSON.stringify(res.result));
+
+          // If there is nothing saved on init, save empty array
+          if (localStorage.getItem('storedLinks') == null) {
+            localStorage.setItem('storedLinks', '[]');
+          }
+
+          // get old data
+          this.Links = JSON.parse(localStorage.getItem('storedLinks'));
+
+          //if links are less than 3 add new link into the Link arry, else shift the first item in the array if items are more than 3
+          if (this.Links.length < 3) {
+            this.Links.push(res.result);
+          } else {
+            this.Links.shift();
+            this.Links.push(res.result);
+          }
+
+          // Save the updated links array to localstorage
+          localStorage.setItem('storedLinks', JSON.stringify(this.Links));
         },
         (errMess) => {
           this.showSpinner = false;
-          // this.Links = null;
           this.errMessage = <any>errMess;
           setTimeout(() => {
             this.errMessage = null;
@@ -57,27 +86,18 @@ export class ShortifyComponent implements OnInit {
         }
       );
 
-      if (this.Links.length > 2) {
-        this.Links.shift();
-      }
-
       setTimeout(() => {
         this.url = '';
       }, 3000);
     }
   }
 
-  onClick() {
-    this.copyState = 'Copied!';
-    this.isCopied = 'hsl(258, 40%, 30%)';
-
+  // Click function to change copy style and text
+  clickedLink;
+  onClick(i) {
+    this.clickedLink = this.Links[i];
     setTimeout(() => {
-      this.copyState = 'Copy';
-      this.isCopied = '';
+      this.clickedLink = null;
     }, 5000);
-
-    if (this.err === true) {
-      this.isErr = true;
-    }
   }
 }

@@ -7,7 +7,7 @@ footer {
   background-color: var(--Very-Dark-Blue);
 
   .logo {
-    width: 300px;
+    width: 200px;
     color: #fff;
   }
 
@@ -46,5 +46,68 @@ footer {
   li:hover {
     color: var(--Cyan);
     transition: color 0.3s ease-in;
+  }
+}
+
+@media (max-width: 1000px) {
+  .logo {
+    width: 150px;
+  }
+
+  .socialMedia {
+    width: 200px;
+    justify-content: space-evenly;
+
+    a {
+      margin-left: var(--small);
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  footer {
+    padding: var(--large) var(--large);
+    gap: 15px;
+
+    .logo {
+      width: 120px;
+    }
+  }
+
+  .socialMedia {
+    width: 170px;
+  }
+}
+
+@media (max-width: 650px) {
+  footer {
+    padding: var(--large) var(--large);
+    grid-template-columns: 1fr;
+
+    .logo {
+      margin: var(--mid) auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .resources,
+    .company,
+    .features {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .socialMedia {
+      width: 200px;
+      align-items: center;
+      justify-self: center;
+      justify-content: space-between;
+
+      a {
+        margin-left: 0;
+      }
+    }
   }
 }

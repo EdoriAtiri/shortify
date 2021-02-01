@@ -6,6 +6,7 @@ html,
 body {
   height: 100%;
   box-sizing: border-box;
+  // overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -13,6 +14,12 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   background-color: hsl(0, 0%, 90%);
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+  background: var(--Dark_Violet);
+  border-radius: 10px;
 }
 
 h1,
@@ -41,6 +48,11 @@ button,
 
 button:hover,
 .btn:hover {
+  background: hsl(180, 66%, 80%);
+}
+button:focus,
+.btn:focus {
+  outline: none;
   background: hsl(180, 66%, 80%);
 }
 

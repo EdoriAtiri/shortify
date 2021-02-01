@@ -4,10 +4,11 @@
       <form id="url-Input" (ngSubmit)="onSubmit()">
         <input
           aria-labelledby="url-Input"
-          placeholder="Shorten a link here..."
+          placeholder="  Shorten a link here..."
           [(ngModel)]="url"
           name="url"
           type="text"
+          [ngStyle]="{ 'border-color': inputErr }"
         />
         <button aria-label="Shorten Button">Shorten It!</button>
       </form>
@@ -17,21 +18,28 @@
           <em>{{ errMessage }}</em>
         </p>
       </mat-error>
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
     </div>
   </div>
 
-  <div class="result" *ngFor="let result of Links">
-    <p>{{ result.original_link }}</p>
+  <div class="result" *ngFor="let result of Links; index as i" [@fade]="i">
+    <p class="original_link">{{ result.original_link | truncateText: 40 }}</p>
+
     <div class="new-link">
       <p>{{ result.full_short_link }}</p>
       <button
-        [ngStyle]="{ 'background-color': isCopied }"
+        [ngClass]="{
+          touched: clickedLink?.full_short_link === result.full_short_link
+        }"
         [cdkCopyToClipboard]="result.full_short_link"
-        (click)="onClick()"
+        (click)="onClick(i)"
       >
-        {{ copyState }}
+        {{
+          clickedLink?.full_short_link === result.full_short_link
+            ? "Copied!"
+            : "Copy"
+        }}
       </button>
     </div>
   </div>
-  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 </div>

@@ -3,8 +3,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  padding: calc(var(--very-large) - 25px) var(--very-large)
-    calc(var(--very-large) + 25px);
+  padding: calc(var(--very-large) - 25px) var(--very-large);
 }
 
 .hero-img {
@@ -46,6 +45,44 @@
     a {
       text-decoration: none;
       color: inherit;
+    }
+  }
+}
+
+// MEDIA QUERIES-----------------------
+
+@media (max-width: 650px) {
+  #hero {
+    background: #fff;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    padding: var(--larger) var(--large);
+  }
+
+  .hero-img {
+    width: 100%;
+    position: static;
+  }
+
+  .started {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--large);
+    text-align: center;
+    width: 100%;
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 900;
+      margin-bottom: var(--mid);
+    }
+
+    p {
+      color: var(--Gray);
+      margin-bottom: calc(var(--mid) + 5px);
     }
   }
 }

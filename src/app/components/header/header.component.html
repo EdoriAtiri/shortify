@@ -1,11 +1,20 @@
 <mat-toolbar id="header">
+  <div class="nav">
+    <img src="../../../assets/images/logo.svg" alt="Shortly Logo" />
+    <div id="navbar" class="navbar">
+      <div id="hamburger" class="hamburger-menu" (click)="openMobileMenu()">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+      </div>
+    </div>
+  </div>
   <div class="headerLeft">
     <img src="../../../assets/images/logo.svg" alt="Shortly Logo" />
     <span>Features</span>
     <span>Pricing</span>
     <span>Resources</span>
   </div>
-  <!-- <div class="example-spacer"></div> -->
   <div class="headerRight">
     <span>Login</span>
     <button mat-button aria-label="Sign up button">Sign Up</button>

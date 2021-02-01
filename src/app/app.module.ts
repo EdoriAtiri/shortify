@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,6 +20,8 @@ import { HeroComponent } from './components/hero/hero.component';
 import { ShortifyComponent } from './components/shortify/shortify.component';
 import { InfoComponent } from './components/info/info.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { MobileMenuComponent } from './components/mobile-menu/mobile-menu.component';
+import { TruncateTextPipe } from './truncate-text.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ShortifyComponent,
     InfoComponent,
     LoadingSpinnerComponent,
+    MobileMenuComponent,
+    TruncateTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     ClipboardModule,
     FontAwesomeModule,
   ],
