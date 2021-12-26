@@ -12,6 +12,11 @@
   padding: var(--large) var(--mid);
   margin: auto;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
   .line {
     width: 100%;
     border-bottom: 1px solid #fff;
