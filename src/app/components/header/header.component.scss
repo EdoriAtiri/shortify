@@ -32,6 +32,10 @@
     text-decoration: none;
   }
 
+  a:hover {
+    outline: 1px solid #6c757d;
+  }
+
   button {
     padding: var(--small) var(--mid);
     border-radius: var(--curve-radius);
@@ -64,7 +68,7 @@
     transition: all 0.8s;
   }
 
-  .headerLeft > *,
+  .headerLeft *,
   .headerRight > * {
     cursor: pointer;
   }

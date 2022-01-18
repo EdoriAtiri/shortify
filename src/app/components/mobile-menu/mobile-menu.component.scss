@@ -17,6 +17,10 @@
     text-decoration: none;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
   .line {
     width: 100%;
     border-bottom: 1px solid #fff;
